@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="versus-3d" default="archive">
+
+	<property name="build.dir" location="build" />
+	
+	<property name="src.dir" location="src" />
+	
+	<property name="lib.dir" location="lib" />
+	
+	<property name="test.dir" location="${build.dir}/test" />
+	
+	<property name="dist.dir" location="dist" />
+	
+	<property name="test.data.dir" location="${build.dir}/data" />
+	
+	<property name="test.reports.dir" location="${build.dir}/reports" />
+	
+	<property name="javadocs.dir" location="${build.dir}/javadocs" />
+	
+	<property name="project.name" value="versus-3d" />
+	
+	<property name="project.version" value="0.5" />
+	
+	<property name="jarfile.name" value="${project.name}-${project.version}.jar" />
+		
+	<property name="jarfile.path" location="${dist.dir}/${jarfile.name}" />
+	
+	<property name="versus.dir" location="versus" />
+	
+	<path id="compile.classpath">
+		<pathelement path="${src.dir}" />
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+			<exclude name="junit-4.8.1.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="test.classpath">
+		<path refid="compile.classpath" />
+		<pathelement path="lib/junit-4.8.1.jar" />
+		<pathelement path="${build.dir}/classes" />
+		<pathelement path="${build.dir}/test" />
+	</path>
+
+	<target name="init">
+		<mkdir dir="${build.dir}/classes" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+	
+	<target name="test-init">
+		<mkdir dir="${test.dir}"/>
+		<delete dir="${test.data.dir}" />
+		<delete dir="${test.reports.dir}" />
+		<mkdir dir="${test.data.dir}"/>
+		<mkdir dir="${test.reports.dir}"/>
+	</target>
+
+	<target name="clean" depends="init" description="Deletes all generated files">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="compile" depends="init" description="Compiles the Java source code">
+		<javac srcdir="src" includes="**" encoding="utf-8" destdir="build/classes" 
+			source="1.6" target="1.6" nowarn="true" debug="true" debuglevel="lines,vars,source">
+			<classpath refid="compile.classpath" />
+		</javac>
+		<copy todir="${build.dir}/classes/META-INF">
+		    <fileset dir="${src.dir}/META-INF"/>
+		</copy>
+	</target>
+	
+	<target name="test-compile" depends="compile,test-init">
+		<javac destdir="${test.dir}" debug="${build.debug}" includeantruntime="true" srcdir="test">
+			<classpath refid="test.classpath" />
+		</javac>
+		
+		<copy todir="${test.dir}">
+			<fileset dir="test" excludes="**/*.java" />
+		</copy>
+	</target>
+	
+	<target name="test" depends="test-compile">
+		<junit printsummary="true" errorproperty="test.failed" failureproperty="test.failed">
+			<classpath refid="test.classpath" />
+			<formatter type="brief" usefile="false"/>
+			<formatter type="xml"/>
+			<batchtest todir="${test.data.dir}">
+				<fileset dir="${test.dir}" includes="**/*Test.class" />
+			</batchtest>
+		</junit>
+		
+		<junitreport todir="${test.reports.dir}">
+			<fileset dir="${test.data.dir}">
+				<include name="TEST-*.xml"/>
+			</fileset>
+			<report format="frames" todir="${test.reports.dir}"/>
+		</junitreport>
+		
+		<fail message="Tests failed. Check log and reports." if="test.failed" />
+	</target>	
+	
+	<target name="archive" depends="compile" description="Creates the JAR file">
+		<jar destfile="${jarfile.path}">
+			<fileset dir="${build.dir}/classes"></fileset>
+		</jar>
+	</target>
+	
+	<target name="test-dist" depends="archive">
+		<unjar src="${jarfile.path}" dest="${dist.dir}/unjar-api">
+		</unjar>
+	</target>
+	
+	<target name="javadocs" depends="compile" description="Make javadocs">
+		<mkdir dir="${javadocs.dir}" />
+		<javadoc author="true" destdir="${javadocs.dir}" packagenames="edu.illinois.ncsa.versus.*"
+			sourcepath="${src.dir}" use="true" version="true" windowtitle="documentation" private="true" >
+			<classpath refid="compile.classpath" />
+		</javadoc>
+	</target>
+</project>
