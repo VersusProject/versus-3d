@@ -3,16 +3,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/versus"/>
-	<classpathentry kind="lib" path="lib/ncsa/3DFu_Loaders.jar"/>
 	<classpathentry kind="lib" path="lib/ncsa/3DUtilities.jar"/>
 	<classpathentry kind="lib" path="lib/ncsa/ImageUtilities.jar"/>
-	<classpathentry kind="lib" path="lib/ncsa/MatrixUtilities.jar"/>
 	<classpathentry kind="lib" path="lib/ncsa/Utilities.jar"/>
-	<classpathentry kind="lib" path="lib/log4j-1.2.8.jar"/>
-	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="lib/jama-1.0.2/Jama-1.0.2.jar"/>
-	<classpathentry kind="lib" path="lib/j3d-1.5.2/j3dcore.jar"/>
-	<classpathentry kind="lib" path="lib/j3d-1.5.2/j3dutils.jar"/>
-	<classpathentry kind="lib" path="lib/j3d-1.5.2/vecmath.jar"/>
+	<classpathentry kind="lib" path="lib/misc/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
