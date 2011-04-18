@@ -87,7 +87,9 @@ public class MeshAdapter implements HasVertices, HasFaces, HasMesh, FileLoader
 	@Override
 	public void load(File file) throws IOException
 	{
-		mesh.load(Utility.unixPath(file.getAbsolutePath()));
+		if (!mesh.load(Utility.unixPath(file.getAbsolutePath()))) {
+			throw(new IOException("Failure to load mesh."));
+		}
 	}
 
 	@Override
