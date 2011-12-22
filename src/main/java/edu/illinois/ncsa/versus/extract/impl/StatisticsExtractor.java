@@ -97,4 +97,9 @@ public class StatisticsExtractor implements Extractor
 	{
 		return DoubleArrayFeature.class;
 	}
+	
+	@Override
+	public boolean hasPreview(){
+		return false;
+	}
 }

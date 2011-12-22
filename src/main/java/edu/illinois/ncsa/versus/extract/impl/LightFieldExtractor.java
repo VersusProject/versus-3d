@@ -162,4 +162,9 @@ public class LightFieldExtractor implements Extractor
 	{
 		return DoubleArrayFeature.class;
 	}
+	
+	@Override
+	public boolean hasPreview(){
+		return false;
+	}
 }

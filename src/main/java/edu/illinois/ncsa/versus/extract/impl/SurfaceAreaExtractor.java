@@ -74,4 +74,9 @@ public class SurfaceAreaExtractor implements Extractor
 	{
 		return DoubleArrayFeature.class;
 	}
+	
+	@Override
+	public boolean hasPreview(){
+		return false;
+	}
 }
