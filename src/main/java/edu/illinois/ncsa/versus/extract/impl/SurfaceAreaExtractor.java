@@ -79,4 +79,9 @@ public class SurfaceAreaExtractor implements Extractor
 	public boolean hasPreview(){
 		return false;
 	}
+	
+	@Override
+	public String previewName(){
+		return null;
+	}
 }
