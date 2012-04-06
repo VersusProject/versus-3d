@@ -7,7 +7,7 @@ import edu.illinois.ncsa.versus.descriptor.impl.DoubleArrayFeature;
 import edu.illinois.ncsa.versus.descriptor.impl.VectorFeature;
 import edu.illinois.ncsa.versus.extract.Extractor;
 import edu.ncsa.model.MeshAuxiliary.*;
-import edu.ncsa.image.*;
+import kgm.image.*;
 import java.util.*;
 
 /**

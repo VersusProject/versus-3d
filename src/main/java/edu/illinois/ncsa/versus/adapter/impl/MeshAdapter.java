@@ -6,7 +6,7 @@ import edu.illinois.ncsa.versus.adapter.HasMesh;
 import edu.illinois.ncsa.versus.adapter.HasVertices;
 import edu.ncsa.model.*;
 import edu.ncsa.model.MeshAuxiliary.*;
-import edu.ncsa.utility.*;
+import kgm.utility.*;
 import java.io.*;
 import java.util.*;
 
