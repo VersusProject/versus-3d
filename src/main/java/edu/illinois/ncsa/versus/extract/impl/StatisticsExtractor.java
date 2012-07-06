@@ -24,7 +24,7 @@ public class StatisticsExtractor implements Extractor, HasCategory {
      * @return a double array representation of the given object
      */
     private DoubleArrayFeature extract(HasVertices adapter) {
-        Vector<double[]> vertices = adapter.getVertices();
+		List<double[]> vertices = adapter.getVertices();
         double mean_x = 0;
         double mean_y = 0;
         double mean_z = 0;
